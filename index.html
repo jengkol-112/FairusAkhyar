@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Personal Website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+        /* RESET */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(30, 30, 50, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        header h1 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            cursor: default;
+        }
+        
+        nav a {
+            margin-left: 2rem;
+            font-weight: 600;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0%;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        
+        main {
+            padding: 6rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        section {
+            margin-bottom: 5rem;
+        }
+        /* About Me */
+        
+        #about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        #about img {
+            border-radius: 100%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 4px solid #fff;
+            transition: transform 0.4s ease;
+        }
+        
+        #about img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        #about .about-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        #about .about-text h2 {
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        #about .about-text p {
+            font-weight: 300;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        /* Skills */
+        
+        #skills h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        
+        .skill {
+            background: rgba(255 255 255 / 0.15);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            min-width: 100px;
+            text-align: center;
+            font-weight: 600;
+            cursor: default;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 3px 8px rgb(0 0 0 / 0.2);
+        }
+        
+        .skill:hover {
+            background: #fff;
+            color: #764ba2;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgb(0 0 0 / 0.3);
+        }
+        /* Projects */
+        
+        #projects h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .project-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .project {
+            background: rgba(255 255 255 / 0.1);
+            border-radius: 15px;
+            width: 270px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: default;
+        }
+        
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgb(0 0 0 / 0.4);
+            background: #764ba2;
+            color: #fff;
+        }
+        
+        .project h3 {
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        
+        .project p {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        /* Contact */
+        
+        #contact h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            background: rgba(255 255 255 / 0.15);
+            border-radius: 12px;
+            padding: 1rem 1.8rem;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .contact-item:hover {
+            background: #fff;
+            color: #764ba2;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgb(0 0 0 / 0.3);
+        }
+        
+        .contact-item svg {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 0.5rem;
+            fill: currentColor;
+        }
+        
+        .contact-item p {
+            font-weight: 600;
+            font-size: 1.1rem;
+            user-select: text;
+        }
+        /* Responsive */
+        
+        @media (max-width: 600px) {
+            #about {
+                flex-direction: column;
+                text-align: center;
+            }
+            #about img {
+                margin: 0 auto;
+            }
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>John Doe</h1>
+        <nav>
+            <a href="#about" tabindex="1">About</a>
+            <a href="#skills" tabindex="2">Skills</a>
+            <a href="#projects" tabindex="3">Projects</a>
+            <a href="#contact" tabindex="4">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" tabindex="0" aria-label="About Me section">
+            <img src="c:\Users\Dell\Downloads\WhatsApp Image 2024-11-16 at 02.05.42.jpeg" alt="Photo of John Doe" />
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Hello! I'm John, a passionate web designer and frontend developer. I love crafting beautiful and interactive websites that provide great user experience. When I'm not coding, you'll find me exploring design trends and experimenting with
+                    new CSS animations.</p>
+            </div>
+        </section>
+
+        <section id="skills" tabindex="0" aria-label="Skills section">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill" tabindex="0" aria-label="HTML5 skill">HTML5</div>
+                <div class="skill" tabindex="0" aria-label="CSS3 skill">CSS3</div>
+                <div class="skill" tabindex="0" aria-label="Responsive Design skill">Responsive Design</div>
+                <div class="skill" tabindex="0" aria-label="CSS Animations skill">CSS Animations</div>
+                <div class="skill" tabindex="0" aria-label="Flexbox skill">Flexbox</div>
+                <div class="skill" tabindex="0" aria-label="Grid skill">Grid</div>
+            </div>
+        </section>
+
+        <section id="projects" tabindex="0" aria-label="Projects section">
+            <h2>Projects</h2>
+            <div class="project-cards">
+                <div class="project" tabindex="0" aria-label="Project called Interactive Portfolio">
+                    <h3>Interactive Portfolio</h3>
+                    <p>A fully responsive portfolio site with smooth animations and interactive navigation built purely with HTML and CSS.</p>
+                </div>
+                <div class="project" tabindex="0" aria-label="Project called CSS Art Gallery">
+                    <h3>CSS Art Gallery</h3>
+                    <p>Collection of creative artworks created only with CSS shapes and animations for unique visual experiences.</p>
+                </div>
+                <div class="project" tabindex="0" aria-label="Project called Modern Landing Page">
+                    <h3>Modern Landing Page</h3>
+                    <p>A sleek, stylish landing page concept showcasing gradient backgrounds, grid layout and hover effects.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" tabindex="0" aria-label="Contact section">
+            <h2>Contact Me</h2>
+            <div class="contact-methods">
+                <a href="mailto:john.doe@example.com" class="contact-item" tabindex="0" aria-label="Email John Doe">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <p>john.doe@example.com</p>
+                </a>
+                <a href="https://github.com/johndoe" target="_blank" rel="noopener" class="contact-item" tabindex="0" aria-label="GitHub Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.5 0-.25-.01-.91-.01-1.79-2.78.6-3.37-1.34-3.37-1.34-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.6.07-.6 1 .07 1.53 1.04 1.53 1.04.89 1.52 2.34 1.08 2.9.83.09-.65.35-1.08.64-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.25.1-2.6 0 0 .84-.27 2.76 1.02a9.55 9.55 0 012.5-.34c.85.004 1.71.12 2.5.34 1.91-1.3 2.75-1.02 2.75-1.02.55 1.35.2 2.35.1 2.6.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .28.18.59.69.49A10.005 10.005 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+                    <p>github.com/johndoe</p>
+                </a>
+                <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener" class="contact-item" tabindex="0" aria-label="LinkedIn Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C3.34 3.5 2 4.85 2 6.5c0 1.65 1.34 3 2.98 3 1.64 0 2.98-1.35 2.98-3 0-1.65-1.34-3-2.98-3zM2 8.98h6v12.02H2V8.98zM9.5 8.98h5.57v1.64h.08c.78-1.48 2.67-3.04 5.49-3.04 5.87 0 6.95 3.83 6.95 8.79v10.62H21.5v-9.41c0-2.25-.04-5.15-3.14-5.15-3.14 0-3.62 2.45-3.62 4.98v9.58h-6V8.98z"/></svg>
+                    <p>linkedin.com/in/johndoe</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
